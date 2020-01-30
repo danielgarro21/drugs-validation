@@ -36,6 +36,7 @@ class App extends Component {
       }
     };
   }
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -61,7 +62,7 @@ class App extends Component {
     switch (name) {
       case "drugName":
         formErrors.drugName =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+          value.length < 3 ? "minimo 3 caracteres requerido" : "";
         break;
       case "weight":
         formErrors.weight =
@@ -87,6 +88,7 @@ class App extends Component {
     const { formErrors } = this.state;
 
     return (
+      
       <div className="wrapper">
         <div className="form-wrapper">
           <h1>Validacion</h1>
@@ -106,15 +108,15 @@ class App extends Component {
               )}
             </div>
             <div className="weight">
-              <label htmlFor="weight">Peso(kg)</label>
-              <input
-                className={formErrors.weight.length > 0 ? "error" : null}
-                placeholder=""
-                type="text"
-                name="weight"
-                noValidate
-                onChange={this.handleChange}
-              />
+              <label htmlFor="weight">A repartir en:</label>
+              <select value={this.state.weight} onChange= {this.handleChange}>
+             <option value="1"> </option>
+             <option value="2"> 1 dosis=cada 24H</option>
+             <option value="3"> 2 dosis=cada 12H</option>
+             <option value="4"> 3 dosis=cada 8H</option>
+             <option value="5"> 4 dosis=cada 4H</option>
+           </select>
+              
               {formErrors.weight.length > 0 && (
                 <span className="errorMessage">{formErrors.weight}</span>
               )}
@@ -145,10 +147,13 @@ class App extends Component {
             </div>
             <div className="createAccount">
               <button type="submit">Verificar</button>
+              <button type="submit">Registrar Dosis</button>
               <small></small>
             </div>
           </form>
+          
         </div>
+        
       </div>
     );
     
